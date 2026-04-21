@@ -1,0 +1,328 @@
+/* =================================================================
+// STYLESHEET FOR MANAGER DASHBOARD (MODERN DESIGN)
+// =================================================================*/
+
+/* --- 1. ตัวแปรสีและค่าพื้นฐาน (เหมือน material.css) --- */
+:root {
+    --primary-color: #3498db;
+    --primary-hover: #2980b9;
+    --success-color: #27ae60;
+    --success-light-bg: #e9f7ef;
+    --text-dark: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --text-body: #34495e;
+    --bg-color: #f4f7f9;
+    --panel-bg: #ffffff;
+    --border-color: #e0e6ed;
+    --selected-bg: #eaf3fb;
+    --disabled-color: #bdc3c7;
+    --font-family: 'Kanit', sans-serif;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- 2. สไตล์พื้นฐานของหน้า --- */
+.main-content {
+    margin-top: 60px;
+    padding: 1rem 2rem;
+    transition: margin-left 0.3s ease;
+    margin-left: 0;
+}
+.main-content.shifted {
+    margin-left: 250px;
+}
+.dashboard-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-top: 2rem; /* เพิ่มระยะห่างจาก Navbar */
+}
+
+/* --- 3. Header และส่วนกรองวันที่ (ดีไซน์ใหม่) --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.dashboard-header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.dashboard-header h1 i {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+}
+.date-filter-form {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.date-filter-form label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.date-input {
+    background-color: var(--panel-bg);
+    border: 1.5px solid #dee2e6;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    min-width: 150px;
+    height: 44px;
+}
+.filter-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+.filter-btn:hover {
+    background-color: var(--primary-hover);
+}
+.latest-update {
+    width: 100%;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- 4. KPI Cards (ดีไซน์ใหม่) --- */
+.kpi-cards-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.kpi-card {
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.kpi-card .card-icon {
+    font-size: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+/* ทำให้ไอคอนแต่ละอันมีสีเฉพาะตัว */
+.kpi-card:nth-child(1) .card-icon { color: #3498db; background-color: #eaf3fb; } /* Blue */
+.kpi-card:nth-child(2) .card-icon { color: #27ae60; background-color: #e9f7ef; } /* Green */
+.kpi-card:nth-child(3) .card-icon { color: #e67e22; background-color: #fdf3e9; } /* Orange */
+.kpi-card:nth-child(4) .card-icon { color: #e74c3c; background-color: #fbeaea; } /* Red */
+.kpi-card .card-details .value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+.kpi-card .card-details .label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* --- 5. Dashboard Main Grid & Cards (ดีไซน์ใหม่) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+}
+.dashboard-grid .card {
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+}
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    padding: 1.25rem 1.5rem 0 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.card-title i {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+}
+
+/* --- Sales Chart --- */
+.sales-chart-card { grid-column: span 12; }
+@media (min-width: 992px) { .sales-chart-card { grid-column: span 7; } }
+.chart-wrapper {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    min-height: 350px;
+    position: relative;
+}
+
+/* --- Employee Status --- */
+.employee-status-card { grid-column: span 12; }
+@media (min-width: 992px) { .employee-status-card { grid-column: span 5; } }
+.employee-list {
+    list-style: none;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+/* ... สไตล์อื่นๆ ของ employee status เหมือนเดิม ... */
+
+
+/* --- Bestseller Card --- */
+.bestseller-card { grid-column: span 12; }
+@media (min-width: 1200px) { .bestseller-card { grid-column: span 8; } }
+.bestseller-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.bestseller-card th, .bestseller-card td {
+    text-align: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+.bestseller-card thead { background-color: #f8f9fa; }
+.bestseller-card th {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.bestseller-card tbody tr { border-bottom: 1px solid var(--border-color); }
+.bestseller-card tbody tr:last-child { border-bottom: none; }
+.bestseller-card tbody tr:hover { background-color: var(--selected-bg); }
+
+
+/* --- Stock Card --- */
+.stock-card { grid-column: span 12; }
+@media (min-width: 1200px) { .stock-card { grid-column: span 4; } }
+.stock-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+.stock-item {
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stock-item .name { font-weight: 500; font-size: 0.95rem; }
+.stock-item .quantity { font-weight: 600; font-size: 1rem; }
+.stock-item .status {
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+.stock-item.warning { background-color: #fffbeb; }
+.stock-item.warning .status { background-color: #fff0c7; color: #856404; }
+.stock-item.danger { background-color: #fbeaea; }
+.stock-item.danger .status { background-color: #f5c6cb; color: #721c24; }
+
+/* --- General Helper --- */
+.no-data-message, .no-data-message-static {
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+
+.employee-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--primary-light-bg);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.employee-list {
+    list-style: none;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.employee-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+}
+
+.employee-item:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.employee-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.employee-name {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.employee-role {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-dot.green {
+    background-color: var(--success-color);
+    box-shadow: 0 0 8px var(--success-color);
+}
+
+.status-dot.orange {
+    background-color: var(--warning-color);
+    box-shadow: 0 0 8px var(--warning-color);
+}
+
+/* =================================================================
+

@@ -1,0 +1,240 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    -webkit-tap-highlight-color: transparent;
+}
+.mobile-container {
+    max-width: 480px; margin: 0 auto;
+    background-color: #ffffff; min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    position: relative; padding-bottom: 90px;
+}
+
+/* --- Main Header --- */
+.main-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; background-color: #ffffff;
+    border-bottom: 1px solid #e8e8e8; position: sticky; top: 0; z-index: 100;
+    height: 59px;
+}
+.header-content { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.main-header i { font-size: 1.5rem; color: #333; cursor: pointer; }
+.table-info { display: flex; align-items: center; gap: 6px; font-size: 1rem; font-weight: 500; }
+.header-title { font-weight: 700; flex-grow: 1; text-align: center; }
+.header-back-btn { position: absolute; left: 16px; z-index: 1; }
+.header-icons { display: flex; align-items: center; gap: 16px; position: relative; }
+.cart-count-indicator {
+    position: absolute; top: -5px; right: -8px; background-color: #ff4d4f; color: white;
+    width: 18px; height: 18px; border-radius: 50%; font-size: 0.7rem; font-weight: 500;
+    display: none; align-items: center; justify-content: center; border: 1px solid white;
+}
+
+/* --- [ใหม่] Search Bar Styling --- */
+.search-bar-container {
+    display: none; align-items: center; width: 100%; gap: 10px;
+}
+#searchInput {
+    width: 100%; border: none; background-color: #f0f2f5;
+    padding: 8px 12px; border-radius: 8px; font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+}
+#searchInput:focus { outline: none; box-shadow: 0 0 0 2px #007bff40; }
+#close-search-btn { font-size: 1.8rem; }
+
+/* --- Menu View Specific --- */
+.restaurant-banner { position: relative; height: 150px; }
+.banner-image { width: 100%; height: 100%; object-fit: cover; }
+.restaurant-info {
+    position: absolute; bottom: -30px; left: 16px; right: 16px;
+    background-color: #fff; border-radius: 12px; padding: 12px;
+    display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.logo-wrapper { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin-right: 12px; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.restaurant-logo { width: 100%; height: 100%; object-fit: cover; }
+.restaurant-info h1 { font-size: 1.2rem; font-weight: 700; color: #222; }
+
+/* --- Menu Categories (Original Style) --- */
+.menu-categories {
+    display: flex; gap: 8px; padding: 12px 16px;
+    overflow-x: auto; white-space: nowrap;
+    position: sticky; top: 58px; /* ความสูง header */
+    z-index: 99; background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    margin-top: 45px; /* เว้นที่ให้ banner */
+    scrollbar-width: none; /* Firefox */
+}
+.menu-categories::-webkit-scrollbar { display: none; /* Chrome, Safari */ }
+.menu-categories a {
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    padding: 8px 16px; border-radius: 20px;
+    color: #555; background-color: #f0f2f5;
+    transition: all 0.2s ease-in-out;
+}
+.menu-categories a.active {
+    color: white; background-color: #007bff;
+    font-weight: 700;
+}
+
+/* --- Menu List --- */
+.menu-list-container { padding: 0 16px; }
+.category-title { font-size: 1.2rem; font-weight: 700; margin-top: 20px; margin-bottom: 12px; }
+.menu-list { display: flex; flex-direction: column; gap: 16px; }
+.menu-item { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.menu-item.disabled { opacity: 0.5; cursor: not-allowed; position: relative; }
+.menu-item.disabled::after {
+    content: 'หมด'; position: absolute; top: 50%; left: 15px;
+    transform: translateY(-50%);
+    background-color: rgba(184, 0, 0, 0.8); color: white;
+    padding: 4px 12px; border-radius: 6px; font-size: 0.9rem; font-weight: bold;
+}
+.menu-item-image { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.menu-item.disabled .menu-item-image { filter: grayscale(100%); }
+.menu-item-details { flex-grow: 1; }
+.menu-item-name { font-size: 1rem; font-weight: 500; margin-bottom: 4px; }
+.menu-item-price { font-size: 0.95rem; color: #555; font-weight: 400; }
+.menu-item-add .quantity-in-cart {
+    background-color: #007bff; color: white;
+    width: 24px; height: 24px; border-radius: 50%;
+    font-size: 0.9rem; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* --- Cart View --- */
+#cart-view {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 59px); /* ความสูงเต็มจอ ลบด้วยความสูง Header */
+    background-color: #f0f2f5;
+}
+.cart-items-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+.empty-cart-message { text-align: center; color: #888; margin-top: 40px; }
+.cart-page-item {
+    display: flex; align-items: center; gap: 12px;
+    background-color: #fff; padding: 12px; border-radius: 10px;
+    margin-bottom: 12px;
+}
+.cart-item-image { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+.cart-item-details { flex-grow: 1; }
+.cart-item-name { font-weight: 500; }
+.cart-item-price { font-size: 0.9rem; color: #666; }
+.cart-item-actions { display: flex; align-items: center; gap: 10px; }
+.qty-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid #ddd; background-color: #fff;
+    font-size: 1.2rem; color: #007bff;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.qty-text { font-size: 1rem; font-weight: 500; min-width: 20px; text-align: center; }
+
+.cart-page-footer {
+    background-color: #fff; padding: 16px;
+    border-top: 1px solid #e8e8e8;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+}
+.cart-summary { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.total-price { font-size: 1.2rem; font-weight: 700; }
+.checkout-btn {
+    width: 100%; background-color: #007bff; border: none;
+    padding: 14px; font-weight: bold; cursor: pointer;
+    color: white; font-size: 1rem; border-radius: 8px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.service-type-group {
+    display: flex; gap: 16px; margin-bottom: 16px;
+}
+.service-type-group label {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 10px; border: 1px solid #ddd; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s;
+}
+.service-type-group input[type="radio"] { display: none; }
+.service-type-group input[type="radio"]:checked + span { color: #007bff; font-weight: 700; }
+.service-type-group label:has(input:checked) {
+    border-color: #007bff; background-color: #e7f3ff;
+}
+
+.cart-summary { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.total-price { font-size: 1.2rem; font-weight: 700; }
+.checkout-btn {
+    width: 100%; background-color: #00d907; border: none;
+    padding: 14px; font-weight: bold; cursor: pointer;
+    color: white; font-size: 1rem; border-radius: 8px;
+    font-family: 'Kanit', sans-serif;
+}
+.checkout-btn:disabled { background-color: #ffb900; cursor: not-allowed; }
+
+/* --- Cart Bottom Bar --- */
+.cart-bottom-bar {
+    position: fixed; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px); max-width: 448px;
+    background-color: #007bff; color: white;
+    border-radius: 12px; padding: 12px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 200; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    cursor: pointer; transition: transform 0.3s ease;
+}
+.cart-summary-info { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 500; }
+.cart-summary-info i { font-size: 1.4rem; }
+.cart-summary-total { font-size: 1.1rem; font-weight: 700; }
+
+.cart-item-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px; /* เพิ่มระยะห่างจากปุ่ม +/- */
+    font-size: 1.3rem; /* เพิ่มขนาดไอคอนให้ใหญ่ขึ้นเล็กน้อย */
+    color: #e74c3c; /* สีแดงอิฐ สื่อถึงการลบ */
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out; /* เพิ่ม animation ตอน hover */
+}
+
+/* เพิ่ม effect เมื่อนำเมาส์ไปชี้ */
+.cart-item-delete:hover {
+    color: #c0392b; /* ทำให้สีแดงเข้มขึ้น */
+    transform: scale(1.15); /* ขยายไอคอนเล็กน้อย */
+}
+
+/* ทำให้ปุ่มจางลงเมื่อถูก disable */
+.cart-item-delete:disabled {
+    color: #bdc3c7; /* สีเทา */
+    cursor: not-allowed;
+    transform: none; /* ไม่ต้องมี effect ตอน hover */
+}
+
+/* --- Styling for Cancel Order Button --- */
+
+#cancel-order-btn {
+    /* --- ดีไซน์หลัก (Outline Button) --- */
+    background-color: transparent; /* พื้นหลังโปร่งใส */
+    border: 2px solid #e74c3c;    /* เส้นขอบสีแดง */
+    color: #e74c3c;               /* ตัวอักษรสีแดง */
+
+    /* --- Layout & Sizing --- */
+    width: 100%;                  /* ความกว้างเต็ม */
+    padding: 12px 20px;
+    margin-top: 10px;             /* เพิ่มระยะห่างจากปุ่มด้านบน */
+    border-radius: 10px;          /* ทำให้ขอบมน */
+    
+    /* --- Typography & Behavior --- */
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    
+    /* --- Animation --- */
+    transition: background-color 0.3s ease, color 0.3s ease; /* ทำให้เอฟเฟกต์ตอน hover นุ่มนวล */
+}
+
+/* --- เอฟเฟกต์เมื่อนำเมาส์ไปชี้ (Hover) --- */
+#cancel-order-btn:hover {
+    background-color: #e74c3c; /* พื้นหลังเปลี่ยนเป็นสีแดง */
+    color: #ffffff;             /* ตัวอักษรเปลี่ยนเป็นสีขาว */
+}
+

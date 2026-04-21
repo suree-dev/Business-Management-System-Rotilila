@@ -1,0 +1,439 @@
+/* --- Global Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #f8f9fa; /* เปลี่ยนสีพื้นหลังให้อ่อนลง */
+    margin: 0;
+    color: #343a40;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Main Content Layout --- */
+.main-content {
+    padding-top: 125px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+}
+
+/* --- Header Section --- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header-section h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* --- New Leave Button --- */
+.btn-new-leave {
+    background-color: #3498db; /* สีฟ้าสดใส */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.btn-new-leave:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px); /* เพิ่ม animation เล็กน้อย */
+}
+
+/* --- Table Container (Card Style) --- */
+.table-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    overflow-x: auto; /* ทำให้ตารางเลื่อนแนวนอนได้บนจอเล็ก */
+}
+
+/* --- Table Styling --- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* ทำให้เส้นขอบรวมเป็นเส้นเดียว */
+    text-align: left;
+}
+
+table thead th {
+    background-color: #f1f3f5;
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 15px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #dee2e6;
+}
+
+table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table tbody tr:hover {
+    background-color: #f8f9fa; /* สีพื้นหลังเมื่อเมาส์ชี้ */
+}
+
+.no-data {
+    text-align: center;
+    color: #868e96;
+    padding: 40px 0;
+    font-size: 1.1rem;
+}
+
+/* --- Status Badges --- */
+.status {
+    padding: 6px 12px;
+    border-radius: 20px; /* ทำให้ขอบมนสวยงาม */
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    min-width: 90px;
+}
+
+.status-pending {
+    background-color: #f39c12; /* สีส้ม */
+}
+
+.status-approved {
+    background-color: #2ecc71; /* สีเขียว */
+}
+
+.status-rejected {
+    background-color: #e74c3c; /* สีแดง */
+}
+
+/* --- Notification/Message Styling --- */
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* ========== MODAL STYLES ========== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; /* ใช้ flex เพื่อจัดกลาง */
+    justify-content: center;
+    align-items: center;
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
+    opacity: 0; /* เริ่มต้นให้โปร่งใส */
+    pointer-events: none; /* ไม่ให้คลิกได้ตอนซ่อน */
+    transition: opacity 0.3s ease;
+}
+
+/* Script จะเปลี่ยน display เป็น flex และ opacity เป็น 1 */
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px 40px;
+    border: none;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    -webkit-animation: slideIn 0.4s;
+    animation: slideIn 0.4s;
+}
+
+.modal-content h1 {
+    font-size: 1.8rem;
+    text-align: left;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.modal-content p {
+    text-align: left;
+    color: #6c757d;
+    margin-bottom: 25px;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* --- Form elements inside Modal --- */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+
+.form-group-row .form-group {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="date"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.modal-content .submit-button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content .submit-button:hover {
+    background-color: #218838;
+}
+
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ========== ส่วนที่แก้ไข: ป้องกัน Modal เด้งตอนโหลด ========== */
+.modal {
+    display: none; /* เปลี่ยนเป็น none เพื่อซ่อนเป็นค่าเริ่มต้น */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* เริ่มต้นให้โปร่งใส */
+    transition: opacity 0.3s ease; /* เพิ่ม transition */
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive Grid */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-left: 5px solid; /* เส้นสีด้านข้าง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card i {
+    font-size: 2.5rem; /* ขนาดไอคอน */
+    padding: 15px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* --- กำหนดสีให้แต่ละการ์ด --- */
+.stat-card.vacation { border-color: #007bff; }
+.stat-card.vacation i { background-color: #007bff; }
+
+.stat-card.sick { border-color: #dc3545; }
+.stat-card.sick i { background-color: #dc3545; }
+
+.stat-card.personal { border-color: #17a2b8; }
+.stat-card.personal i { background-color: #17a2b8; }
+
+.stat-card.pending { border-color: #ffc107; }
+.stat-card.pending i { background-color: #ffc107; }
+
+/* ปรับปรุงปุ่มยื่นใบลาเล็กน้อย */
+.btn-new-leave {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* ระยะห่างระหว่างไอคอนกับข้อความ */
+}
+
+/* ========== ส่วนที่แก้ไข: ปรับปรุง Z-index ของ Modal ========== */
+.modal {
+    z-index: 1050; /* เพิ่ม z-index ให้สูงกว่าองค์ประกอบอื่นๆ เช่น navbar/sidebar */
+}
+
+/* ========== ส่วนที่เพิ่มใหม่: สไตล์ของตัวกรอง (Filter) ========== */
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap; /* ทำให้ขึ้นบรรทัดใหม่บนจอเล็ก */
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #f8f9fa; /* สีพื้นหลังอ่อนๆ */
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.95rem;
+    min-width: 180px; /* กำหนดความกว้างขั้นต่ำ */
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* ปรับ Padding ของ Table Container ให้เหมาะสมกับ Filter */
+.table-container {
+    padding-top: 0; /* เอา padding ด้านบนออก เพราะย้ายไปอยู่ใน filter-container แล้ว */
+}
+
+/* --- เพิ่มสีสำหรับการ์ด "รวม" ใหม่ --- */
+.stat-card.total { 
+    border-color: #6f42c1; /* สีม่วง */
+}
+.stat-card.total i { 
+    background-color: #6f42c1; /* สีม่วง */
+}
+
+.stat-card.pending { border-color: #ffc107; }
+.stat-card.pending i { background-color: #ffc107; }

@@ -1,0 +1,471 @@
+/* ===== CSS สำหรับหน้า receipt.php (ปรับปรุงฟอนต์และ Navbar) ===== */
+
+:root {
+    --primary-color: #3498db;
+    --primary-hover: #2980b9;
+    --success-color: #27ae60;
+    --success-light-bg: #e8f5e9;
+    --text-dark: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --text-body: #34495e;
+    --bg-color: #f4f7f9;
+    --panel-bg: #ffffff;
+    --border-color: #e0e6ed;
+    --selected-bg: #eaf3fb;
+    --disabled-color: #bdc3c7;
+    --font-family: 'Kanit', sans-serif;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-body);
+}
+
+.navbar {
+  background: rgba(44, 62, 80, 0.95);
+  color: #fff;
+  padding: 0.5rem 1.5rem; /* <<< ปรับขนาด Padding เพื่อลดความสูง Navbar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  min-height: 60px; /* <<< กำหนดความสูงขั้นต่ำ */
+}
+
+.toggle-sidebar {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: #fff;
+  position: fixed;
+  top: 60px; /* <<< ปรับตำแหน่งให้พอดีกับ Navbar ใหม่ */
+  left: -250px;
+  height: 100%;
+  padding-top: 10px;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 1rem;
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+.logout-btn {
+  display: block;
+  width: 80%;
+  margin: 20px auto 20px auto;
+  padding: 0.6rem 1rem;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+.admin-profile {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #ffffff;
+  padding: 0.3rem 1rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.463);
+  transition: background-color 0.3s ease;
+  background-color: rgba(44, 62, 80, 0.95);
+}
+
+.profile-char {
+  width: 36px;
+  height: 36px;
+  background-color: #466380;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Kanit', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: 'Kanit', sans-serif;
+  color: #ffffff;
+}
+
+.role {
+  font-size: 0.75rem;
+  font-family: 'Kanit', sans-serif;
+  color: #d4e4ff;
+}
+
+.main-content {
+    margin-top: 60px; /* <<< ปรับระยะห่างให้พอดีกับ Navbar ใหม่ */
+    padding: 2rem;
+    transition: margin-left 0.3s ease;
+    margin-left: 0;
+}
+
+.main-content.shifted {
+    margin-left: 250px;
+}
+
+.receipt-page-flex {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-top: 85px;
+    min-height: 90vh;
+    height: calc(100vh - (60px + 4rem)); /* ปรับความสูงให้สัมพันธ์กับ margin-top และ padding */
+}
+
+.receipt-payment-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 5px;
+}
+.payment-amounts {
+    text-align: right;
+}
+.payment-amounts div {
+    line-height: 1.4;
+}
+
+.order-history-list {
+    width: 350px;
+    min-width: 220px;
+    background: #f8f9fa;
+    border-right: 1px solid #e0e0e0;
+    height: 115%; /* ปรับให้เต็มความสูงของ parent */
+    overflow-y: auto;
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+.order-history-section {
+    margin: 0 0 18px 0;
+}
+.order-history-date {
+    color: #388e3c;
+    font-weight: bold;
+    font-family: 'Kanit', sans-serif;
+    margin: 18px 0 8px 0;
+    font-size: 1.05rem;
+}
+.order-history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    padding: 16px;
+    box-shadow: 0 1px 4px rgba(44,62,80,0.04);
+    cursor: pointer;
+    border: 2px solid #ecf0f1;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+.order-history-item:hover {
+    border-color: #bdc3c7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.order-history-item.selected {
+    border: 2px solid #6e6e6e;
+    background: #e8e8e8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.order-history-item.selected .status {
+    background: #5e8c58;
+    color: #ffffff;
+}
+.order-history-item .left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.order-history-item .amount {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #222;
+    font-family: 'Kanit', sans-serif;
+}
+.order-history-item .time {
+    font-size: 0.95rem;
+    color: #888;
+    font-family: 'Kanit', sans-serif;
+}
+.order-history-item .order-id {
+    font-size: 0.98rem;
+    color: #888;
+    font-weight: 500;
+    font-family: 'Kanit', sans-serif;
+}
+.order-history-item .status {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-left: 8px;
+    font-family: 'Kanit', sans-serif;
+}
+@media (max-width: 900px) {
+    .receipt-page-flex {
+        flex-direction: column;
+        height: auto; /* ปรับความสูงสำหรับจอเล็ก */
+    }
+    .order-history-list {
+        width: 100%;
+        min-width: unset;
+        height: 300px; /* จำกัดความสูงของประวัติ */
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+}
+
+/* --- [ปรับปรุง] Receipt Slip Styling --- */
+
+.receipt-slip {
+    flex: 0 1 320px;
+    max-width: 320px;
+    height: fit-content;
+    margin: 0 auto;
+    /* [เปลี่ยน] ใช้ฟอนต์ Monospace ที่ทันสมัยและอ่านง่ายขึ้น */
+    /* 'IBM Plex Mono' หรือ 'Source Code Pro' เป็นตัวเลือกที่ดี (ต้อง import จาก Google Fonts) */
+    /* ถ้าไม่ต้องการ import ให้ใช้ 'Consolas' หรือ 'Courier New' เป็นตัวสำรอง */
+    font-family: 'Kanit', sans-serif;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #000;
+    border-radius: 12px;
+}
+
+.receipt-header, .receipt-footer {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.receipt-header h2 {
+    /* [คงเดิม] ใช้ฟอนต์ UI สำหรับชื่อร้าน ดูดีอยู่แล้ว */
+    font-family: 'Kanit', sans-serif; 
+    font-size: 20px; /* [ปรับ] เพิ่มขนาดชื่อร้านให้เด่นขึ้นอีกนิด */
+    margin: 0;
+    font-weight: 500; /* [ปรับ] ลดความหนาลงเล็กน้อยเพื่อให้ดูสบายตา */
+}
+
+/* [ใหม่] สไตล์สำหรับข้อมูลติดต่อหรือที่อยู่ใต้ชื่อร้าน */
+.receipt-header p {
+    font-family: 'Kanit', sans-serif;
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+}
+
+.receipt-detail,
+.receipt-list,
+.receipt-summary {
+    margin-bottom: 12px;
+    /* [ลบ] font-weight: lighter; ออก เพราะฟอนต์ monospace บางตัวอาจจะอ่านยากเมื่อบางเกินไป */
+}
+
+/* [ปรับปรุง] จัดการ layout ของส่วนรายละเอียดให้สวยงามขึ้น */
+.receipt-detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+.receipt-detail-label {
+    font-family: 'Kanit', sans-serif; /* ใช้ฟอนต์ UI กับ Label */
+    font-weight: 400;
+    color: #333;
+}
+.receipt-detail-value {
+    font-family: 'Kanit', sans-serif;
+}
+
+
+.summary-left {
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.summary-right {
+    text-align: right;
+    margin-bottom: 4px;
+}
+
+.summary-colon {
+  display: inline-block;
+  width: 10px;
+  text-align: center;
+}
+
+.receipt-where {
+    margin-bottom: 12px;
+    text-align: center;
+    /* [ปรับ] ใช้ฟอนต์ UI เพื่อให้อ่านง่าย */
+    font-family: 'Kanit', sans-serif;
+}
+
+.receipt-list-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px; /* [ปรับ] เพิ่มระยะห่างระหว่างรายการ */
+}
+
+/* [ใหม่] กำหนดฟอนต์สำหรับชื่อสินค้าและราคาแยกกัน */
+.item-name {
+    /* อาจจะใช้ฟอนต์ปกติเพื่อให้ชื่อยาวๆ ตัดคำได้สวยงาม */
+    font-family: 'Kanit', sans-serif; 
+    font-size: 13.5px;
+    /* ทำให้ข้อความที่ยาวขึ้นบรรทัดใหม่ได้ */
+    white-space: normal; 
+    word-break: break-word;
+    padding-right: 10px; /* กันไม่ให้ชื่อสินค้าติดกับราคา */
+}
+.item-total {
+    /* ให้ราคายังคงเป็น Monospace เพื่อให้จุดทศนิยมตรงกัน */
+    font-family: 'Kanit', sans-serif;
+    white-space: nowrap; /* ไม่ให้ราคาขึ้นบรรทัดใหม่ */
+}
+
+
+.receipt-list-item.desc {
+    font-style: italic;
+    color: #666;
+    font-size: 12px;
+    padding-left: 10px;
+    font-family: 'Kanit', sans-serif; /* ให้อ่านง่ายขึ้น */
+}
+
+.receipt-hr {
+    border-top: 1px dashed #ccc;
+    margin: 15px 0; /* [ปรับ] เพิ่มระยะห่างเส้นประให้มากขึ้น */
+}
+
+.receipt-footer {
+    font-size: 12px;
+    margin-top: 15px;
+    font-family: 'Kanit', sans-serif; /* [ปรับ] ใช้ฟอนต์ UI */
+    color: #444;
+}
+.no-orders-message {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #666;
+    margin: auto;
+}
+
+.no-orders-message h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Kanit', sans-serif;
+}
+
+.no-orders-message p {
+    margin: 0;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    color: #888;
+}
+
+.status {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-family: 'Kanit', sans-serif;
+}
+
+.status.paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.refunded {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+.dropdown-menu {
+  position: absolute !important;
+  top: 107% !important;
+  right: 2px !important;
+  background-color: white !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  min-width: 145px !important;
+  z-index: 999 !important;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 10px 15px 25px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
